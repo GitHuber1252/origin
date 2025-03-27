@@ -271,11 +271,11 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         // Находим путь для field1 (например, от входа до start)
         const entranceKey = 1; // предположим, что вход - это комната 1
         const entrance = currentCoordinates[entranceKey];
-        const pathToStart = findPath(entrance, start);
+        const pathToStart = findPath( start, entrance);
         setPath1(pathToStart);
 
         // Находим путь для field2 (от start до end)
-        const pathToEnd = findPath(start, end);
+        const pathToEnd = findPath(entrance, end);
         setPath2(pathToEnd);
 
         // Остальной код для изображений...
