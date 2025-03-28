@@ -53,7 +53,8 @@ const roomCoordinatesList = [
         5: { x: 40, y: 30 },
         6: { x: 60, y: 30 },
         7: { x: 20, y: 50 },
-        8: { x: 40, y: 50 }
+        8: { x: 40, y: 50 },
+        9: { x: 60, y: 50 }  //9 везде это координаты лесницы
     },
     // Координаты для изображения 1
     {
@@ -81,6 +82,7 @@ const roomCoordinatesList = [
         9: { x: 60, y: 60 },
         10: { x: 20, y: 60 },
     },
+    //3
     {
         1: { x: 20, y: 10 },
         2: { x: 40, y: 10 },  // 40% от ширины (428)
@@ -92,7 +94,7 @@ const roomCoordinatesList = [
         8: { x: 40, y: 50 },
         9: { x: 60, y: 50 }
     },
-    //  для изображений 3-6
+    //  4
     {
         1: { x: 25, y: 25 },
         2: { x: 45, y: 25 },
@@ -104,6 +106,7 @@ const roomCoordinatesList = [
         8: { x: 45, y: 65 },
         9: { x: 65, y: 65 }
     },
+    //5
     {
         1: { x: 30, y: 30 },
         2: { x: 50, y: 30 },
@@ -115,6 +118,7 @@ const roomCoordinatesList = [
         8: { x: 50, y: 70 },
         9: { x: 70, y: 70 }
     },
+    //6
     {
         1: { x: 35, y: 35 },
         2: { x: 55, y: 35 },
@@ -126,17 +130,6 @@ const roomCoordinatesList = [
         8: { x: 55, y: 75 },
         9: { x: 75, y: 75 }
     },
-    {
-        1: { x: 40, y: 40 },
-        2: { x: 60, y: 40 },
-        3: { x: 80, y: 40 },
-        4: { x: 40, y: 60 },
-        5: { x: 60, y: 60 },
-        6: { x: 80, y: 60 },
-        7: { x: 40, y: 80 },
-        8: { x: 60, y: 80 },
-        9: { x: 80, y: 80 }
-    }
 ];
 
 const Navigation = ({ currentCoordinates: initialCoordinates }) => {
@@ -147,17 +140,12 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [currentCoordinates, setCurrentCoordinates] = useState(initialCoordinates);
     useEffect(() => {
         if (field1) {
-            const roomNumber = Number(field1);
-            // Определяем индекс в roomCoordinatesList на основе номера аудитории
-            // Например, если номер аудитории 101-199 -> индекс 0, 201-299 -> индекс 1 и т.д.
+            const roomNumber = Math.floor(Number(field1) / 1000) ;
             const floorIndex = Math.floor(roomNumber ) ;
 
             // Проверяем, что индекс в пределах массива
             if (floorIndex >= 0 && floorIndex < roomCoordinatesList.length) {
                 setCurrentCoordinates(roomCoordinatesList[floorIndex]);
-            } else {
-                // Если индекс вне диапазона, используем первый набор координат
-                setCurrentCoordinates(roomCoordinatesList[0]);
             }
         }
     }, [field1]);
@@ -252,8 +240,9 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [path2, setPath2] = useState(null); // путь для field2
 
     const handleSearch = () => {
-        const startKey = Number(field1);
-        const endKey = Number(field2);
+        const startKey = Math.floor((Number(field1) / 1000) );
+
+        const endKey = Math.floor((Number(field2) / 1000));
 
         if (isNaN(startKey) || isNaN(endKey)) {
             alert("Ошибка: введите числовые значения!");
@@ -263,18 +252,18 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         const start = currentCoordinates[startKey];
         const end = currentCoordinates[endKey];
 
-        if (!start || !end) {
+        if ((!start || !end) || (field1 >=7000 || field2 >=7000) ||(field1 <=1000 || field2 <=1000)) {
             alert("Ошибка: введены некорректные номера комнат!");
             return;
         }
 
-        // Находим путь для field1 (например, от входа до start)
-        const entranceKey = 1; // предположим, что вход - это комната 1
+        // Находим путь для field1
+        const entranceKey = 9; // предположим, что ЛЕСТНИЦА - это комната 9
         const entrance = currentCoordinates[entranceKey];
         const pathToStart = findPath( start, entrance);
         setPath1(pathToStart);
 
-        // Находим путь для field2 (от start до end)
+        // Находим путь для field2
         const pathToEnd = findPath(entrance, end);
         setPath2(pathToEnd);
 
@@ -289,7 +278,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             setSelectedImages([`${imageIndex1}.png`]);
         } else {
             setSelectedImages([`${imageIndex1}.png`, `${imageIndex2}.png`]);
-            setValue("Переместитесь на " + field2 + " этаж");
+            setValue("Переместитесь на " +Math.floor(Number(field2) / 1000) + " этаж");
         }
     };
 
