@@ -308,21 +308,26 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
                     </div>
                     <div className="maze-container">
                         {selectedImages.map((image, index) => (
-                            <Maze
-                                key={index}
-                                mazeImage={image}
-                                path={index === 0 ? path1 : path2} // Первое изображение - path1, второе - path2
-                            />
+                            <>
+                                <Maze
+                                    key={index}
+                                    mazeImage={image}
+                                    path={index === 0 ? path1 : path2}
+                                />
+                                {/* Добавляем floor-info после первого изображения */}
+                                {index === 0 && field1 !== field2 && (
+                                    <div className="floor-info">{value}</div>
+                                )}
+                            </>
                         ))}
-                        {field1 !== field2 && <div className="floor-info">{value}</div>}
                     </div>
                 </div>
             </div>
         );
-    };
-const Maze = ({ mazeImage, path }) => {
+};
+const Maze = ({mazeImage, path}) => {
     const imgRef = useRef();
-    const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+    const [imageSize, setImageSize] = useState({width: 0, height: 0});
 
     useEffect(() => {
         if (!mazeImage) return;

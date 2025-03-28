@@ -10,7 +10,6 @@ redirects = []
 publish = "C:\\Users\\79209\\imit-nav\\build"
 publishOrigin = "ui"
 commandOrigin = "ui"
-base = "C:\\Users\\79209\\imit-nav"
 command = "npm run build"
 
 [build.environment]
