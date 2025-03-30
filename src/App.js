@@ -240,9 +240,9 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [path2, setPath2] = useState(null); // путь для field2
 
     const handleSearch = () => {
-        const startKey = Math.floor((Number(field1) / 1000) );
+        const startKey = Math.floor((Number((field1) % 1000)/100) );
 
-        const endKey = Math.floor((Number(field2) / 1000));
+        const endKey = Math.floor((Number((field2) % 1000)/100));
 
         if (isNaN(startKey) || isNaN(endKey)) {
             alert("Ошибка: введите числовые значения!");
@@ -252,7 +252,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         const start = currentCoordinates[startKey];
         const end = currentCoordinates[endKey];
 
-        if ((!start || !end) || (field1 >=7000 || field2 >=7000) ||(field1 <=1000 || field2 <=1000)) {
+        if ((!start || !end) || (field1 >=1609 || field2 >=1609) ||(field1 <=1000 || field2 <=1000)) {
             alert("Ошибка: введены некорректные номера комнат!");
             return;
         }
@@ -278,7 +278,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             setSelectedImages([`${imageIndex1}.png`]);
         } else {
             setSelectedImages([`${imageIndex1}.png`, `${imageIndex2}.png`]);
-            setValue("Переместитесь на " +Math.floor(Number(field2) / 1000) + " этаж");
+            setValue("Переместитесь на " +Math.floor(Number((field2) % 1000)/100) + " этаж");
         }
     };
 
