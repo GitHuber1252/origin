@@ -140,7 +140,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [currentCoordinates, setCurrentCoordinates] = useState(initialCoordinates);
     useEffect(() => {
         if (field1) {
-            const roomNumber = Math.floor(Number(field1) / 1000) ;
+            const roomNumber = Math.floor(Number((field1) % 1000 /100)) ;
             const floorIndex = Math.floor(roomNumber ) ;
 
             // Проверяем, что индекс в пределах массива
