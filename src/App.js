@@ -44,95 +44,99 @@ const BuildingPlan = () => {
 };
 
 const roomCoordinatesList = [
-    //Костыль хз
+    // Пустой элемент для индекса 0 (не используется)
+    {},
+
+    // 1 этаж (ключи 0-8)
     {
-         //8 везде это координаты лесницы
-    },
-    // Координаты для изображения 0
-    {   0: { x: 35, y: 55 },
+        0: { x: 35, y: 55 },
         1: { x: 15, y: 15 },
         2: { x: 35, y: 15 },
         3: { x: 55, y: 15 },
         4: { x: 15, y: 35 },
         5: { x: 55, y: 35 },
-        6: { x: 55, y: 35 },
+        6: { x: 55, y: 55 },
         7: { x: 15, y: 55 },
-        8: { x: 55, y: 55 }
+        8: { x: 20, y: 35 } // Лестница
     },
 
-    // Координаты для изображения 1
-    {   0: { x: 20, y: 60 },
-        1: { x: 20, y: 20 },
-        2: { x: 40, y: 20 },
-        3: { x: 60, y: 20 },
-        4: { x: 20, y: 40 },
-        5: { x: 40, y: 40 },
-        6: { x: 60, y: 40 },
-        7: { x: 20, y: 60 },
-        8: { x: 40, y: 60 },
-
-
+    // 2 этаж (ключи 9-17)
+    {
+        9: { x: 20, y: 60 },
+        10: { x: 20, y: 20 },
+        11: { x: 40, y: 20 },
+        12: { x: 60, y: 20 },
+        13: { x: 20, y: 40 },
+        14: { x: 40, y: 40 },
+        15: { x: 60, y: 40 },
+        16: { x: 20, y: 60 },
+        17: { x: 40, y: 60 } // Лестница
     },
-    //2
-    {   0: { x: 40, y: 50 },
-        1: { x: 20, y: 10 },
-        2: { x: 40, y: 10 },  // 40% от ширины (428)
-        3: { x: 60, y: 10 },  // 60% от ширины (642)
-        4: { x: 20, y: 30 },  // 30% от высоты (702)
-        5: { x: 40, y: 30 },
-        6: { x: 60, y: 30 },
-        7: { x: 20, y: 50 },  // 50% от высоты (1170)
 
-        8: { x: 60, y: 50 }
+    // 3 этаж (ключи 18-26)
+    {
+        18: { x: 40, y: 50 },
+        19: { x: 20, y: 10 },
+        20: { x: 40, y: 10 },
+        21: { x: 60, y: 10 },
+        22: { x: 20, y: 30 },
+        23: { x: 40, y: 30 },
+        24: { x: 60, y: 30 },
+        25: { x: 20, y: 50 },
+        26: { x: 60, y: 50 } // Лестница
     },
-    //  3
-    {   0: { x: 45, y: 65 },
-        1: { x: 25, y: 25 },
-        2: { x: 45, y: 25 },
-        3: { x: 65, y: 25 },
-        4: { x: 25, y: 45 },
-        5: { x: 45, y: 45 },
-        6: { x: 65, y: 45 },
-        7: { x: 25, y: 65 },
 
-        8: { x: 65, y: 65 }
+    // 4 этаж (ключи 27-35)
+    {
+        27: { x: 45, y: 65 },
+        28: { x: 25, y: 25 },
+        29: { x: 45, y: 25 },
+        30: { x: 65, y: 25 },
+        31: { x: 25, y: 45 },
+        32: { x: 45, y: 45 },
+        33: { x: 65, y: 45 },
+        34: { x: 25, y: 65 },
+        35: { x: 65, y: 65 } // Лестница
     },
-    //4
-    {   0: { x: 50, y: 70 },
-        1: { x: 30, y: 30 },
-        2: { x: 50, y: 30 },
-        3: { x: 70, y: 30 },
-        4: { x: 30, y: 50 },
-        5: { x: 50, y: 50 },
-        6: { x: 70, y: 50 },
-        7: { x: 30, y: 70 },
 
-        8: { x: 70, y: 70 }
+    // 5 этаж (ключи 36-44)
+    {
+        36: { x: 50, y: 70 },
+        37: { x: 30, y: 30 },
+        38: { x: 50, y: 30 },
+        39: { x: 70, y: 30 },
+        40: { x: 30, y: 50 },
+        41: { x: 50, y: 50 },
+        42: { x: 70, y: 50 },
+        43: { x: 30, y: 70 },
+        44: { x: 70, y: 70 } // Лестница
     },
-    //5
-    {   0: { x: 55, y: 75 },
-        1: { x: 35, y: 35 },
-        2: { x: 55, y: 35 },
-        3: { x: 75, y: 35 },
-        4: { x: 35, y: 55 },
-        5: { x: 55, y: 55 },
-        6: { x: 75, y: 55 },
-        7: { x: 35, y: 75 },
 
-        8: { x: 75, y: 75 }
-
-    }, //6
-    {   0: { x: 40, y: 50 },
-        1: { x: 20, y: 10 },  // 10% от ширины и высоты экрана
-        2: { x: 40, y: 10 },
-        3: { x: 60, y: 10 },
-        4: { x: 20, y: 30 },
-        5: { x: 40, y: 30 },
-        6: { x: 60, y: 30 },
-        7: { x: 20, y: 50 },
-
-        8: { x: 60, y: 50 }  //8 везде это координаты лесницы
+    // 6 этаж (ключи 45-53)
+    {
+        45: { x: 55, y: 75 },
+        46: { x: 35, y: 35 },
+        47: { x: 55, y: 35 },
+        48: { x: 75, y: 35 },
+        49: { x: 35, y: 55 },
+        50: { x: 55, y: 55 },
+        51: { x: 75, y: 55 },
+        52: { x: 35, y: 75 },
+        53: { x: 75, y: 75 } // Лестница
     },
+
+    // 7 этаж (ключи 54-62)
+    {
+        54: { x: 40, y: 50 },
+        55: { x: 20, y: 10 },
+        56: { x: 40, y: 10 },
+        57: { x: 60, y: 10 },
+        58: { x: 20, y: 30 },
+        59: { x: 40, y: 30 },
+        60: { x: 60, y: 30 },
+        61: { x: 20, y: 50 },
+        62: { x: 60, y: 50 } // Лестница
+    }
 ];
 
 const Navigation = ({ currentCoordinates: initialCoordinates }) => {
@@ -159,7 +163,11 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const getNeighbors = (node) => {
         const directions = [
             { x: 20, y: 0 }, { x: -20, y: 0 },
-            { x: 0, y: 20 }, { x: 0, y: -20 }
+            { x: 0, y: 20 }, { x: 0, y: -20 },
+            { x: 10, y: 0 }, { x: -10, y: 0 },
+            { x: 0, y: 10 }, { x: 0, y: -10 },
+            { x: 5, y: 0 }, { x: -5, y: 0 },
+            { x: 0, y: 5 }, { x: 0, y: -5 }
         ];
 
         const possibleNeighbors = directions.map(d => ({
@@ -243,10 +251,17 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [path2, setPath2] = useState(null); // путь для field2
 
     const handleSearch = () => {
-        const startKey= field1 !== undefined && field1 !== "" ? Math.floor((Number(field1) % 1000) / 100) : 0;
+        let startKey = field1 !== undefined && field1 !== "" ? Number(field1) : 0;
+        let endKey = field2 !== undefined && field2 !== "" ? Number(field2) : 0;
 
-
-        const endKey = field2 !== undefined && field2 !== "" ? Math.floor((Number(field2) % 1000) / 100) : 0;
+// startKey =0  if it matches any of the values
+        if ([1033, 1034, 1035, 1037].includes(startKey)) {
+            startKey = 0;
+        }
+// endKey=0 if it matches any of the values
+        if ([1033, 1034, 1035, 1037].includes(endKey)) {
+            endKey = 0;
+        }
 
         if (isNaN(startKey) || isNaN(endKey)) {
             alert("Ошибка: введите числовые значения!");
@@ -278,12 +293,12 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         setPath2(pathToEnd);
 
         // Остальной код для изображений...
-        const hundredsDigit1 = Math.floor(startKey);
-        const hundredsDigit2 = Math.floor(endKey);
+        const hundredsDigit1 = Math.floor( field1 !== undefined && field1 !== "" ? Math.floor((Number(field1) % 1000) / 100) : 0 );
+        const hundredsDigit2 = Math.floor(field2 !== undefined && field2 !== "" ? Math.floor((Number(field2) % 1000) / 100) : 0 );
         const imageIndex1 = Math.min(6, Math.max(0, hundredsDigit1));
         const imageIndex2 = Math.min(6, Math.max(0, hundredsDigit2));
-        console.log("Старт "+field1, parseInt(field1))
-        console.log("Конец "+field2, parseInt(field2))
+        console.log("Старт ", parseInt(field1))
+        console.log("Конец ", parseInt(field2))
 
         if (imageIndex1 === imageIndex2) {
             setSelectedImages([`${imageIndex1}.png`]);
@@ -381,7 +396,7 @@ const Maze = ({mazeImage, path}) => {
 };
 const App = () => {
 
-    const [currentCoordinates] = useState(roomCoordinatesList[0]);
+    const [currentCoordinates] = useState(roomCoordinatesList[8]);
 
 
 
