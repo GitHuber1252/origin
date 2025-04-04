@@ -161,10 +161,16 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
     const getNeighbors = (node) => {
         const directions = [
+            { x: 30, y: 0 }, { x: -30, y: 0 },
+            { x: 0, y: 30 }, { x: 0, y: -30 },
+            { x: 25, y: 0 }, { x: -25, y: 0 },
+            { x: 0, y: 25 }, { x: 0, y: -25 },
             { x: 20, y: 0 }, { x: -20, y: 0 },
             { x: 0, y: 20 }, { x: 0, y: -20 },
             { x: 10, y: 0 }, { x: -10, y: 0 },
             { x: 0, y: 10 }, { x: 0, y: -10 },
+            { x: 15, y: 0 }, { x: -15, y: 0 },
+            { x: 0, y: 15 }, { x: 0, y: -15 },
             { x: 5, y: 0 }, { x: -5, y: 0 },
             { x: 0, y: 5 }, { x: 0, y: -5 }
         ];
@@ -611,35 +617,85 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
         const start = currentCoordinates[startKey];
         const end = currentCoordinates[endKey];
-        console.log("Старт")
-        console.log(start, startKey)
-        console.log("Конец")
-        console.log( end, endKey)
+
 
 
         if ((!start || !end) ||(field1 >=1609 || field2 >=1609) ||(field1 <=1000 || field2 <=1000)) {
             alert("Ошибка: введены некорректные номера аудиторий для корпуса №1!");
-            console.log(start, startKey)
+            console.log(" ")
             return;
         }
 
         // Находим путь для field1
-        const entranceKey = 8; // предположим, что ЛЕСТНИЦА - это точка 8
-        const entrance = currentCoordinates[entranceKey];
-        const pathToStart = findPath( start, entrance);
-        setPath1(pathToStart);
-
-        // Находим путь для field2
-        const pathToEnd = findPath(entrance, end);
-        setPath2(pathToEnd);
-
-        // Остальной код для изображений...
         const hundredsDigit1 = Math.floor( field1 !== undefined && field1 !== "" ? Math.floor((Number(field1) % 1000) / 100) : 0 );
         const hundredsDigit2 = Math.floor(field2 !== undefined && field2 !== "" ? Math.floor((Number(field2) % 1000) / 100) : 0 );
+        let entranceKey1 = 8;
+        let entranceKey2 = 8;
+        if (hundredsDigit1 === 1) {
+            entranceKey1 = 8;
+        }
+        if (hundredsDigit2 === 1) {
+            entranceKey2 = 8;
+        }
+
+        if (hundredsDigit2 === 2) {
+            entranceKey2 = 17;
+        }// предположим, что ЛЕСТНИЦА - это точка 8
+        if (hundredsDigit1 === 2) {
+            entranceKey1 = 17;
+        }
+
+        if (hundredsDigit2 === 3) {
+            entranceKey2 = 26;
+        }
+        if (hundredsDigit1 === 3) {
+            entranceKey1 = 26;
+        }
+        if (hundredsDigit2 === 4) {
+            entranceKey2 = 35;
+        }
+        if (hundredsDigit1 === 4) {
+            entranceKey1 = 35;
+        }
+        if (hundredsDigit2 === 5) {
+            entranceKey2 = 44;
+        }
+        if (hundredsDigit1 === 5) {
+            entranceKey1 = 44;
+        }
+        if (hundredsDigit2 === 6) {
+            entranceKey2 = 53;
+        }
+        if (hundredsDigit1 === 6) {
+            entranceKey1= 53;
+        }
+
+
+        const entrance1 = currentCoordinates[entranceKey1];
+        const entrance2 = currentCoordinates[entranceKey2];
+        if (hundredsDigit1 === hundredsDigit2) {const pathToStart = findPath( start, end);
+            setPath1(pathToStart);}
+        else{
+            const pathToStart = findPath( start, entrance1);
+            setPath1(pathToStart);
+
+        // Находим путь для field2
+            const pathToEnd = findPath(entrance2, end);
+            setPath2(pathToEnd);}
+
+        // Остальной код для изображений...
+
         const imageIndex1 = Math.min(6, Math.max(0, hundredsDigit1));
         const imageIndex2 = Math.min(6, Math.max(0, hundredsDigit2));
-        console.log("Старт ", parseInt(field1))
-        console.log("Конец ", parseInt(field2))
+        console.log("Маршрут идет от Стартовой аудитории до лесницы на этом этаже, далее от лесницы на конечном этаже до ноечной аудитории")
+        console.log("Старт")
+        console.log(start, startKey)
+        console.log("Лесница начальный этаж")
+        console.log(entrance1, entranceKey1)
+        console.log("Лесница конечный этаж")
+        console.log(entrance2, entranceKey2)
+        console.log("Конец")
+        console.log( end, endKey)
 
         if (imageIndex1 === imageIndex2) {
             setSelectedImages([`${imageIndex1}.png`]);
@@ -737,7 +793,7 @@ const Maze = ({mazeImage, path}) => {
 };
 const App = () => {
 
-    const [currentCoordinates] = useState(roomCoordinatesList[8]);
+    const [currentCoordinates] = useState(roomCoordinatesList[0]);
 
 
 
