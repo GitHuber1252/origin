@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { Stage, Layer, Image, Line } from 'react-konva';
+import { Stage, Layer, Text, Image, Line } from 'react-konva';
 import './App.css';
 
 const Instruction = () => {
@@ -47,7 +47,7 @@ const roomCoordinatesList = [
     // Пустой элемент для индекса 0 (не используется)
     {},
 
-    // 1 этаж (ключи 0-8)
+    // 0 этаж (ключи 0-8)
     {
         0: { x: 35, y: 55 },
         1: { x: 15, y: 15 },
@@ -60,7 +60,7 @@ const roomCoordinatesList = [
         8: { x: 20, y: 35 }, // Лестница
 
 
-    // 2 этаж (ключи 9-17)
+    // 1 этаж (ключи 9-17)
 
         9: { x: 20, y: 60 },
         10: { x: 20, y: 20 },
@@ -73,7 +73,7 @@ const roomCoordinatesList = [
         17: { x: 40, y: 60 }, // Лестница
 
 
-    // 3 этаж (ключи 18-26)
+    // 2 этаж (ключи 18-26)
 
         18: { x: 40, y: 50 },
         19: { x: 20, y: 10 },
@@ -86,7 +86,7 @@ const roomCoordinatesList = [
         26: { x: 60, y: 50 }, // Лестница
 
 
-    // 4 этаж (ключи 27-35)
+    // 3 этаж (ключи 27-35)
 
         27: { x: 45, y: 65 },
         28: { x: 25, y: 25 },
@@ -99,7 +99,7 @@ const roomCoordinatesList = [
         35: { x: 65, y: 65 }, // Лестница
 
 
-    // 5 этаж (ключи 36-44)
+    // 4 этаж (ключи 36-44)
 
         36: { x: 50, y: 70 },
         37: { x: 30, y: 30 },
@@ -112,7 +112,7 @@ const roomCoordinatesList = [
         44: { x: 70, y: 70 }, // Лестница
 
 
-    // 6 этаж (ключи 45-53)
+    // 5 этаж (ключи 45-53)
 
         45: { x: 55, y: 75 },
         46: { x: 35, y: 35 },
@@ -124,7 +124,7 @@ const roomCoordinatesList = [
         52: { x: 35, y: 75 },
         53: { x: 75, y: 75 }, // Лестница
 
-    // 7 этаж (ключи 54-62)
+    // 6 этаж (ключи 54-62)
 
         54: { x: 40, y: 50 },
         55: { x: 20, y: 10 },
@@ -325,287 +325,287 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         }
 
         if ([1146].includes(startKey)) {
-            startKey = 8;
-        }
-
-        if ([1146].includes(endKey)) {
-            endKey = 8;
-        }
-
-        if ([1147, 1148, 1149].includes(startKey)) {
             startKey = 9;
         }
 
-        if ([1147, 1148, 1149].includes(endKey)) {
+        if ([1146].includes(endKey)) {
             endKey = 9;
         }
 
-        if ([1101, 1102, 1103, 1104, 1105, 1129, 1126, 1125, 1128, 1127].includes(startKey)) {
+        if ([1147, 1148, 1149].includes(startKey)) {
             startKey = 10;
         }
 
-        if ([1101, 1102, 1103, 1104, 1105, 1129, 1126, 1125, 1128, 1127].includes(endKey)) {
+        if ([1147, 1148, 1149].includes(endKey)) {
             endKey = 10;
         }
 
-        if ([1106, 1107, 1108, 1109, 1110].includes(startKey)) {
+        if ([1101, 1102, 1103, 1104, 1105, 1129, 1126, 1125, 1128, 1127].includes(startKey)) {
             startKey = 11;
         }
 
-        if ([1106, 1107, 1108, 1109, 1110].includes(endKey)) {
+        if ([1101, 1102, 1103, 1104, 1105, 1129, 1126, 1125, 1128, 1127].includes(endKey)) {
             endKey = 11;
         }
 
-        if ([1144, 1143].includes(startKey)) {
+        if ([1106, 1107, 1108, 1109, 1110].includes(startKey)) {
             startKey = 12;
         }
 
-        if ([1144, 1143].includes(endKey)) {
+        if ([1106, 1107, 1108, 1109, 1110].includes(endKey)) {
             endKey = 12;
         }
 
-        if ([1142, 1141, 1140, 1139, 1136, 1135, 1134].includes(startKey)) {
+        if ([1144, 1143].includes(startKey)) {
             startKey = 13;
         }
 
-        if ([1142, 1141, 1140, 1139, 1136, 1135, 1134].includes(endKey)) {
+        if ([1144, 1143].includes(endKey)) {
             endKey = 13;
         }
 
-        if ([1124, 1123, 1121, 1120].includes(startKey)) {
+        if ([1142, 1141, 1140, 1139, 1136, 1135, 1134].includes(startKey)) {
             startKey = 14;
         }
 
-        if ([1124, 1123, 1121, 1120].includes(endKey)) {
+        if ([1142, 1141, 1140, 1139, 1136, 1135, 1134].includes(endKey)) {
             endKey = 14;
         }
 
-        if ([1111, 1112, 1113, 1115, 1116, 1118, 1119].includes(startKey)) {
+        if ([1124, 1123, 1121, 1120].includes(startKey)) {
             startKey = 15;
         }
 
-        if ([1111, 1112, 1113, 1115, 1116, 1118, 1119].includes(endKey)) {
+        if ([1124, 1123, 1121, 1120].includes(endKey)) {
             endKey = 15;
         }
 
-        if ([1213, 1214, 1215, 1217, 1212, 1211, 1210].includes(startKey)) {
+        if ([1111, 1112, 1113, 1115, 1116, 1118, 1119].includes(startKey)) {
             startKey = 16;
         }
 
-        if ([1213, 1214, 1215, 1217, 1212, 1211, 1210].includes(endKey)) {
+        if ([1111, 1112, 1113, 1115, 1116, 1118, 1119].includes(endKey)) {
             endKey = 16;
         }
 
-        if ([1218, 1219, 1220, 1221, 1228, 1222, 1226].includes(startKey)) {
-            startKey = 17;
-        }
-
-        if ([1218, 1219, 1220, 1221, 1228, 1222, 1226].includes(endKey)) {
-            endKey = 17;
-        }
-
-        if ([1229, 1231, 1231, 1232].includes(startKey)) {
+        if ([1213, 1214, 1215, 1217, 1212, 1211, 1210].includes(startKey)) {
             startKey = 18;
         }
 
-        if ([1229, 1231, 1231, 1232].includes(endKey)) {
+        if ([1213, 1214, 1215, 1217, 1212, 1211, 1210].includes(endKey)) {
             endKey = 18;
         }
 
-        if ([1233].includes(startKey)) {
+        if ([1218, 1219, 1220, 1221, 1228, 1222, 1226].includes(startKey)) {
             startKey = 19;
         }
 
-        if ([1233].includes(endKey)) {
+        if ([1218, 1219, 1220, 1221, 1228, 1222, 1226].includes(endKey)) {
             endKey = 19;
         }
 
-        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
+        if ([1229, 1231, 1231, 1232].includes(startKey)) {
             startKey = 20;
         }
-        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
+
+        if ([1229, 1231, 1231, 1232].includes(endKey)) {
             endKey = 20;
         }
-        if ([1203, 1202, 1201, 1223, 1224, 1225].includes(startKey)) {
+
+        if ([1233].includes(startKey)) {
             startKey = 21;
         }
 
-        if ([1203, 1202, 1201, 1223, 1224, 1225].includes(endKey)) {
+        if ([1233].includes(endKey)) {
             endKey = 21;
         }
 
-        if ([1241, 1240, 1239].includes(startKey)) {
+        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
             startKey = 22;
         }
-
-        if ([1241, 1240, 1239].includes(endKey)) {
+        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
             endKey = 22;
         }
-
-        if ([1238, 1237, 1236, 1235].includes(startKey)) {
+        if ([1203, 1202, 1201, 1223, 1224, 1225].includes(startKey)) {
             startKey = 23;
         }
 
-        if ([1238, 1237, 1236, 1235].includes(endKey)) {
+        if ([1203, 1202, 1201, 1223, 1224, 1225].includes(endKey)) {
             endKey = 23;
         }
 
-        if ([1310, 1311, 1312, 1313, 1314, 1315, 1309-1, 1309-2].includes(startKey)) {
+        if ([1241, 1240, 1239].includes(startKey)) {
             startKey = 24;
         }
 
-        if ([1310, 1311, 1312, 1313, 1314, 1315, 1309-1, 1309-2].includes(endKey)) {
+        if ([1241, 1240, 1239].includes(endKey)) {
             endKey = 24;
         }
 
-        if ([1316, 1317, 1318].includes(startKey)) {
+        if ([1238, 1237, 1236, 1235].includes(startKey)) {
             startKey = 25;
         }
 
-        if ([1316, 1317, 1318].includes(endKey)) {
+        if ([1238, 1237, 1236, 1235].includes(endKey)) {
             endKey = 25;
         }
 
-        if ([1326, 1324, 1328, 1329, 1327].includes(startKey)) {
-            startKey = 26;
-        }
-
-        if ([1326, 1324, 1328, 1329, 1327].includes(endKey)) {
-            endKey = 26;
-        }
-
-        if ([1330, 1331, 1332, 1333].includes(startKey)) {
+        if ([1310, 1311, 1312, 1313, 1314, 1315, 1309, 1309].includes(startKey)) {
             startKey = 27;
         }
 
-        if ([1330, 1331, 1332, 1333].includes(endKey)) {
+        if ([1310, 1311, 1312, 1313, 1314, 1315, 1309, 1309].includes(endKey)) {
             endKey = 27;
         }
 
-        if ([1308-2, 1308-1, 1307, 1306, 1305, 1304, 1303].includes(startKey)) {
+        if ([1316, 1317, 1318].includes(startKey)) {
             startKey = 28;
         }
 
-        if ([1308-2, 1308-1, 1307, 1306, 1305, 1304, 1303].includes(endKey)) {
+        if ([1316, 1317, 1318].includes(endKey)) {
             endKey = 28;
         }
 
-        if ([1302, 1301, 1319, 1321].includes(startKey)) {
+        if ([1326, 1324, 1328, 1329, 1327].includes(startKey)) {
             startKey = 29;
         }
 
-        if ([1302, 1301, 1319, 1321].includes(endKey)) {
+        if ([1326, 1324, 1328, 1329, 1327].includes(endKey)) {
             endKey = 29;
         }
 
-        if ([1325, 1340, 1339].includes(startKey)) {
+        if ([1330, 1331, 1332, 1333].includes(startKey)) {
             startKey = 30;
         }
 
-        if ([1325, 1340, 1339].includes(endKey)) {
+        if ([1330, 1331, 1332, 1333].includes(endKey)) {
             endKey = 30;
         }
 
-        if ([1338, 1337, 1336, 1335].includes(startKey)) {
+        if ([1308, 1308, 1307, 1306, 1305, 1304, 1303].includes(startKey)) {
             startKey = 31;
         }
 
-        if ([1338, 1337, 1336, 1335].includes(endKey)) {
+        if ([1308, 1308, 1307, 1306, 1305, 1304, 1303].includes(endKey)) {
             endKey = 31;
         }
 
-        if ([1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414].includes(startKey)) {
+        if ([1302, 1301, 1319, 1321].includes(startKey)) {
             startKey = 32;
         }
 
-        if ([1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414].includes(endKey)) {
+        if ([1302, 1301, 1319, 1321].includes(endKey)) {
             endKey = 32;
         }
 
-        if ([1415, 1416, 1417, 1421].includes(startKey)) {
+        if ([1325, 1340, 1339].includes(startKey)) {
             startKey = 33;
         }
 
-        if ([1415, 1416, 1417, 1421].includes(endKey)) {
+        if ([1325, 1340, 1339].includes(endKey)) {
             endKey = 33;
         }
 
-        if ([1406, 1405, 1404, 1403].includes(startKey)) {
+        if ([1338, 1337, 1336, 1335].includes(startKey)) {
             startKey = 34;
         }
 
-        if ([1406, 1405, 1404, 1403].includes(endKey)) {
+        if ([1338, 1337, 1336, 1335].includes(endKey)) {
             endKey = 34;
         }
 
-        if ([1402, 1401, 1418, 1420, 1419].includes(startKey)) {
-            startKey = 35;
-        }
-
-        if ([1402, 1401, 1418, 1420, 1419].includes(endKey)) {
-            endKey = 35;
-        }
-
-        if ([1510, 1511, 1512, 1513, 1514, 1506].includes(startKey)) {
+        if ([1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414].includes(startKey)) {
             startKey = 36;
         }
 
-        if ([1510, 1511, 1512, 1513, 1514, 1506].includes(endKey)) {
+        if ([1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414].includes(endKey)) {
             endKey = 36;
         }
 
-        if ([1515, 1516, 1517, 1521, 1522, 1523, 1518].includes(startKey)) {
+        if ([1415, 1416, 1417, 1421].includes(startKey)) {
             startKey = 37;
         }
 
-        if ([1515, 1516, 1517, 1521, 1522, 1523, 1518].includes(endKey)) {
+        if ([1415, 1416, 1417, 1421].includes(endKey)) {
             endKey = 37;
         }
 
-        if ([1524, 1529, 1530, 1525, 1528].includes(startKey)) {
+        if ([1406, 1405, 1404, 1403].includes(startKey)) {
             startKey = 38;
         }
 
-        if ([1524, 1529, 1530, 1525, 1528].includes(endKey)) {
+        if ([1406, 1405, 1404, 1403].includes(endKey)) {
             endKey = 38;
         }
 
-        if ([1537, 1539, 1540].includes(startKey)) {
+        if ([1402, 1401, 1418, 1420, 1419].includes(startKey)) {
             startKey = 39;
         }
 
-        if ([1537, 1539, 1540].includes(endKey)) {
+        if ([1402, 1401, 1418, 1420, 1419].includes(endKey)) {
             endKey = 39;
         }
 
+        if ([1510, 1511, 1512, 1513, 1514, 1506].includes(startKey)) {
+            startKey = 45;
+        }
+
+        if ([1510, 1511, 1512, 1513, 1514, 1506].includes(endKey)) {
+            endKey = 45;
+        }
+
+        if ([1515, 1516, 1517, 1521, 1522, 1523, 1518].includes(startKey)) {
+            startKey = 46;
+        }
+
+        if ([1515, 1516, 1517, 1521, 1522, 1523, 1518].includes(endKey)) {
+            endKey = 46;
+        }
+
+        if ([1524, 1529, 1530, 1525, 1528].includes(startKey)) {
+            startKey = 47;
+        }
+
+        if ([1524, 1529, 1530, 1525, 1528].includes(endKey)) {
+            endKey = 47;
+        }
+
+        if ([1537, 1539, 1540].includes(startKey)) {
+            startKey = 48;
+        }
+
+        if ([1537, 1539, 1540].includes(endKey)) {
+            endKey = 48;
+        }
+
         if ([1505, 1504].includes(startKey)) {
-            startKey = 40;
+            startKey = 49;
         }
 
         if ([1505, 1504].includes(endKey)) {
-            endKey = 40;
+            endKey = 49;
         }
         if ([1502, 1519, 1520, 1553].includes(endKey)) {
-            startKey = 41;
+            startKey = 50;
         }
         if ([1502, 1519, 1520, 1553].includes(endKey)) {
-            endKey = 41;
+            endKey = 50;
         }
 
         if ([1552, 1551, 1550, 1526, 1527].includes(startKey)) {
-            startKey = 42;
+            startKey = 51;
         }
 
         if ([1552, 1551, 1550, 1526, 1527].includes(endKey)) {
-            endKey = 42;
+            endKey = 51;
         }
 
         if ([1544, 1543, 1541].includes(startKey)) {
-            startKey = 43;
+            startKey = 52;
         }
 
         if ([1544, 1543, 1541].includes(endKey)) {
-            endKey = 43;
+            endKey = 52;
         }
 
 
@@ -631,43 +631,49 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         const hundredsDigit2 = Math.floor(field2 !== undefined && field2 !== "" ? Math.floor((Number(field2) % 1000) / 100) : 0 );
         let entranceKey1 = 8;
         let entranceKey2 = 8;
-        if (hundredsDigit1 === 1) {
+        if (hundredsDigit1 === 0) {
             entranceKey1 = 8;
         }
-        if (hundredsDigit2 === 1) {
+        if (hundredsDigit2 === 0) {
             entranceKey2 = 8;
         }
 
-        if (hundredsDigit2 === 2) {
+        if (hundredsDigit2 === 1) {
             entranceKey2 = 17;
         }// предположим, что ЛЕСТНИЦА - это точка 8
-        if (hundredsDigit1 === 2) {
+        if (hundredsDigit1 === 1) {
             entranceKey1 = 17;
         }
 
-        if (hundredsDigit2 === 3) {
+        if (hundredsDigit2 === 2) {
             entranceKey2 = 26;
         }
-        if (hundredsDigit1 === 3) {
+        if (hundredsDigit1 === 2) {
             entranceKey1 = 26;
         }
-        if (hundredsDigit2 === 4) {
+        if (hundredsDigit2 === 3) {
             entranceKey2 = 35;
         }
-        if (hundredsDigit1 === 4) {
+        if (hundredsDigit1 === 3) {
             entranceKey1 = 35;
         }
-        if (hundredsDigit2 === 5) {
+        if (hundredsDigit2 === 4) {
             entranceKey2 = 44;
         }
-        if (hundredsDigit1 === 5) {
+        if (hundredsDigit1 === 4) {
             entranceKey1 = 44;
         }
-        if (hundredsDigit2 === 6) {
+        if (hundredsDigit2 === 5) {
             entranceKey2 = 53;
         }
-        if (hundredsDigit1 === 6) {
+        if (hundredsDigit1 === 5) {
             entranceKey1= 53;
+        }
+        if (hundredsDigit2 === 6) {
+            entranceKey2 = 62;
+        }
+        if (hundredsDigit1 === 6) {
+            entranceKey1= 62;
         }
 
 
@@ -725,8 +731,11 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
                                     key={index}
                                     mazeImage={image}
                                     path={index === 0 ? path1 : path2}
+                                    coordinates={currentCoordinates}
+                                    floor={index === 0 ?
+                                        Math.floor(Number(field1 % 1000 / 100)) :
+                                        Math.floor(Number(field2 % 1000 / 100))}
                                 />
-                                {/* Добавляем floor-info после первого изображения */}
                                 {index === 0 && field1 !== field2 && (
                                     <div className="floor-info">{value}</div>
                                 )}
@@ -737,9 +746,27 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             </div>
         );
 };
-const Maze = ({mazeImage, path}) => {
+const Maze = ({ mazeImage, path, coordinates, floor }) => {
     const imgRef = useRef();
-    const [imageSize, setImageSize] = useState({width: 0, height: 0});
+    const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+
+    // Функция для определения, принадлежит ли ключ к текущему этажу
+    const isKeyForCurrentFloor = (key) => {
+        const keyNum = Number(key);
+
+        // Диапазоны ключей для каждого этажа
+        const floorRanges = {
+            0: [0, 8],    // 0 этаж (ключи 0-8)
+            1: [9, 17],   // 1 этаж (ключи 9-17)
+            2: [18, 26],  // 2 этаж (ключи 18-26)
+            3: [27, 35],  // 3 этаж (ключи 27-35)
+            4: [36, 44],  // 4 этаж (ключи 36-44)
+            5: [45, 53],  // 5 этаж (ключи 45-53)
+            6: [54, 62]   // 6 этаж (ключи 54-62)
+        };
+
+        return keyNum >= floorRanges[floor][0] && keyNum <= floorRanges[floor][1];
+    };
 
     useEffect(() => {
         if (!mazeImage) return;
@@ -762,7 +789,7 @@ const Maze = ({mazeImage, path}) => {
         if (!percentagePath) return [];
         return percentagePath.map(([xPercent, yPercent]) => [
             (xPercent / 100) * imageSize.width,
-            (yPercent / 100) * imageSize.height ,
+            (yPercent / 100) * imageSize.height,
         ]);
     };
 
@@ -787,6 +814,21 @@ const Maze = ({mazeImage, path}) => {
                         listening={false}
                     />
                 )}
+                {/* Отображаем только ключи для текущего этажа */}
+                {coordinates && Object.entries(coordinates)
+                    .filter(([key]) => isKeyForCurrentFloor(key))
+                    .map(([key, coord]) => (
+                        <Text
+                            key={key}
+                            x={(coord.x / 100) * imageSize.width}
+                            y={(coord.y / 100) * imageSize.height}
+                            text={key}
+                            fontSize={16}
+                            fill="black"
+                            align="center"
+                            listening={false}
+                        />
+                    ))}
             </Layer>
         </Stage>
     );
