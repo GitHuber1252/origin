@@ -43,24 +43,24 @@ const BuildingPlan = () => {
     );
 };
 
-const roomCoordinatesList = [
+const initialRoomCoordinates = [
     // Пустой элемент для индекса 0 (не используется)
     {},
 
     // 0 этаж (ключи 0-8)
     {
-        0: { x: 35, y: 55 },
-        1: { x: 15, y: 15 },
-        2: { x: 35, y: 15 },
-        3: { x: 55, y: 15 },
-        4: { x: 15, y: 35 },
-        5: { x: 55, y: 35 },
-        6: { x: 55, y: 55 },
-        7: { x: 15, y: 55 },
-        8: { x: 20, y: 35 }, // Лестница
+        0: { x: 10, y: 35 },
+        1: { x: 40, y: 35 },
+        2: { x: 67, y: 35 },
+        3: { x: 92, y: 35 },
+        4: { x: 10, y: 67 },
+        5: { x: 40, y: 67 },
+        6: { x: 67, y: 67 },
+        7: { x: 92, y: 67 },
+        8: { x: 55, y: 35 }, // Лестница
 
 
-    // 1 этаж (ключи 9-17)
+        // 1 этаж (ключи 9-17)
 
         9: { x: 20, y: 60 },
         10: { x: 20, y: 20 },
@@ -73,7 +73,7 @@ const roomCoordinatesList = [
         17: { x: 40, y: 60 }, // Лестница
 
 
-    // 2 этаж (ключи 18-26)
+        // 2 этаж (ключи 18-26)
 
         18: { x: 40, y: 50 },
         19: { x: 20, y: 10 },
@@ -86,7 +86,7 @@ const roomCoordinatesList = [
         26: { x: 60, y: 50 }, // Лестница
 
 
-    // 3 этаж (ключи 27-35)
+        // 3 этаж (ключи 27-35)
 
         27: { x: 45, y: 65 },
         28: { x: 25, y: 25 },
@@ -99,7 +99,7 @@ const roomCoordinatesList = [
         35: { x: 65, y: 65 }, // Лестница
 
 
-    // 4 этаж (ключи 36-44)
+        // 4 этаж (ключи 36-44)
 
         36: { x: 50, y: 70 },
         37: { x: 30, y: 30 },
@@ -112,7 +112,7 @@ const roomCoordinatesList = [
         44: { x: 70, y: 70 }, // Лестница
 
 
-    // 5 этаж (ключи 45-53)
+        // 5 этаж (ключи 45-53)
 
         45: { x: 55, y: 75 },
         46: { x: 35, y: 35 },
@@ -124,7 +124,7 @@ const roomCoordinatesList = [
         52: { x: 35, y: 75 },
         53: { x: 75, y: 75 }, // Лестница
 
-    // 6 этаж (ключи 54-62)
+        // 6 этаж (ключи 54-62)
 
         54: { x: 40, y: 50 },
         55: { x: 20, y: 10 },
@@ -144,6 +144,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [selectedImages, setSelectedImages] = useState([]);
     const [value, setValue] = useState('');
     const [currentCoordinates, setCurrentCoordinates] = useState(initialCoordinates);
+    const [roomCoordinatesList, setRoomCoordinatesList] = useState(initialRoomCoordinates);
     useEffect(() => {
         if (field1) {
             const roomNumber = Math.floor(Number((field1) % 1000 /100)) ;
@@ -172,7 +173,11 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             { x: 15, y: 0 }, { x: -15, y: 0 },
             { x: 0, y: 15 }, { x: 0, y: -15 },
             { x: 5, y: 0 }, { x: -5, y: 0 },
-            { x: 0, y: 5 }, { x: 0, y: -5 }
+            { x: 0, y: 5 }, { x: 0, y: -5 },
+            { x: 27, y: 0 }, { x: -27, y: 0 },
+            { x: 0, y: 27 }, { x: 0, y: -27 },
+            { x: 32, y: 0 }, { x: -32, y: 0 },
+            { x: 0, y: 32 }, { x: 0, y: -32 }
         ];
 
         const possibleNeighbors = directions.map(d => ({
@@ -231,6 +236,17 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
         console.log("Путь не найден!");
         return [];
+    };
+
+    const updateRoomCoordinate = (floorIndex, roomId, newX, newY) => {
+        setRoomCoordinatesList(prev => {
+            const newList = [...prev];
+            newList[floorIndex] = {
+                ...newList[floorIndex],
+                [roomId]: { x: newX, y: newY }
+            };
+            return newList;
+        });
     };
 
     const reconstructPath = (cameFrom, current) => {
@@ -310,10 +326,14 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
         if ([1013, 1016, 1012, 1011, 1010].includes(startKey)) {
             startKey = 6;
+            
+
+
         }
 
         if ([1013, 1016, 1012, 1011, 1010].includes(endKey)) {
             endKey = 6;
+
         }
 
         if ([1009, 1008, 1007].includes(startKey)) {
@@ -685,7 +705,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             const pathToStart = findPath( start, entrance1);
             setPath1(pathToStart);
 
-        // Находим путь для field2
+            // Находим путь для field2
             const pathToEnd = findPath(entrance2, end);
             setPath2(pathToEnd);}
 
@@ -712,41 +732,42 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     };
 
 
-        return (
-            <div>
-                <div className="search-container">
-                    <h1>Поиск маршрута</h1>
+    return (
+        <div>
+            <div className="search-container">
+                <h1>Поиск маршрута</h1>
 
-                    <div className="input-container">
-                        <input type="number" value={field1} onChange={e => setField1(e.target.value)}
-                               placeholder="Стартовая аудитория"/>
-                        <input type="number" value={field2} onChange={e => setField2(e.target.value)}
-                               placeholder="Конечная аудитория"/>
-                        <button onClick={handleSearch}>Построить маршрут</button>
-                    </div>
-                    <div className="maze-container">
-                        {selectedImages.map((image, index) => (
-                            <>
-                                <Maze
-                                    key={index}
-                                    mazeImage={image}
-                                    path={index === 0 ? path1 : path2}
-                                    coordinates={currentCoordinates}
-                                    floor={index === 0 ?
-                                        Math.floor(Number(field1 % 1000 / 100)) :
-                                        Math.floor(Number(field2 % 1000 / 100))}
-                                />
-                                {index === 0 && field1 !== field2 && (
-                                    <div className="floor-info">{value}</div>
-                                )}
-                            </>
-                        ))}
-                    </div>
+                <div className="input-container">
+                    <input type="number" value={field1} onChange={e => setField1(e.target.value)}
+                           placeholder="Стартовая аудитория"/>
+                    <input type="number" value={field2} onChange={e => setField2(e.target.value)}
+                           placeholder="Конечная аудитория"/>
+                    <button onClick={handleSearch}>Построить маршрут</button>
+                </div>
+                <div className="maze-container">
+                    {selectedImages.map((image, index) => (
+                        <>
+                            <Maze
+                                key={index}
+                                mazeImage={image}
+                                path={index === 0 ? path1 : path2}
+                                coordinates={currentCoordinates}
+                                floor={index === 0 ?
+                                    Math.floor(Number(field1 % 1000 / 100)) :
+                                    Math.floor(Number(field2 % 1000 / 100))}
+                            />
+                            {index === 0 && field1 !== field2 && (
+                                <div className="floor-info">{value}</div>
+                            )}
+                        </>
+                    ))}
                 </div>
             </div>
-        );
+        </div>
+    );
 };
-const Maze = ({ mazeImage, path, coordinates, floor }) => {
+const Maze = ({ mazeImage, path, coordinates, floor, roomCoordinatesList  }) => {
+
     const imgRef = useRef();
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
@@ -756,13 +777,13 @@ const Maze = ({ mazeImage, path, coordinates, floor }) => {
 
         // Диапазоны ключей для каждого этажа
         const floorRanges = {
-            0: [0, 8],    // 0 этаж (ключи 0-8)
-            1: [9, 17],   // 1 этаж (ключи 9-17)
-            2: [18, 26],  // 2 этаж (ключи 18-26)
-            3: [27, 35],  // 3 этаж (ключи 27-35)
-            4: [36, 44],  // 4 этаж (ключи 36-44)
-            5: [45, 53],  // 5 этаж (ключи 45-53)
-            6: [54, 62]   // 6 этаж (ключи 54-62)
+            0: [0, 8],    // 0 этаж
+            1: [9, 17],   // 1 этаж
+            2: [18, 26],  // 2 этаж
+            3: [27, 35],  // 3 этаж
+            4: [36, 44],  // 4 этаж
+            5: [45, 53],  // 5 этаж
+            6: [54, 62]   // 6 этаж
         };
 
         return keyNum >= floorRanges[floor][0] && keyNum <= floorRanges[floor][1];
@@ -808,7 +829,7 @@ const Maze = ({ mazeImage, path, coordinates, floor }) => {
                     <Line
                         points={convertPercentageToPixels(path).flat()}
                         stroke={"red"}
-                        strokeWidth={7}
+                        strokeWidth={5}
                         lineCap="round"
                         lineJoin="round"
                         listening={false}
@@ -835,7 +856,7 @@ const Maze = ({ mazeImage, path, coordinates, floor }) => {
 };
 const App = () => {
 
-    const [currentCoordinates] = useState(roomCoordinatesList[0]);
+    const [currentCoordinates] = useState(initialRoomCoordinates[0]);
 
 
 
