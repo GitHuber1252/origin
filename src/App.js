@@ -53,76 +53,76 @@ const initialRoomCoordinates = [
         1: { x: 40, y: 35 },
         2: { x: 67, y: 35 },
         3: { x: 92, y: 35 },
-        4: { x: 10, y: 67 },
-        5: { x: 40, y: 67 },
-        6: { x: 67, y: 67 },
-        7: { x: 92, y: 67 },
+        4: { x: 10, y: 70 },
+        5: { x: 40, y: 70 },
+        6: { x: 67, y: 70 },
+        7: { x: 92, y: 70 },
         8: { x: 55, y: 35 }, // Лестница
 
 
         // 1 этаж (ключи 9-17)
 
-        9: { x: 20, y: 60 },
-        10: { x: 20, y: 20 },
-        11: { x: 40, y: 20 },
-        12: { x: 60, y: 20 },
-        13: { x: 20, y: 40 },
-        14: { x: 40, y: 40 },
-        15: { x: 60, y: 40 },
-        16: { x: 20, y: 60 },
-        17: { x: 40, y: 60 }, // Лестница
+        9: { x: 10, y: 35 },
+        10: { x: 40, y: 35 },
+        11: { x: 67, y: 35 },
+        12: { x: 87, y: 35 },
+        13: { x: 10, y: 70 },
+        14: { x: 40, y: 70 },
+        15: { x: 67, y: 70 },
+        16: { x: 87, y: 70 },
+        17: { x: 45, y: 35 },// Лестница
 
 
         // 2 этаж (ключи 18-26)
 
-        18: { x: 40, y: 50 },
-        19: { x: 20, y: 10 },
-        20: { x: 40, y: 10 },
-        21: { x: 60, y: 10 },
-        22: { x: 20, y: 30 },
-        23: { x: 40, y: 30 },
-        24: { x: 60, y: 30 },
-        25: { x: 20, y: 50 },
-        26: { x: 60, y: 50 }, // Лестница
+        18: { x: 10, y: 35 },
+        19: { x: 40, y: 35 },
+        20: { x: 67, y: 35 },
+        21: { x: 92, y: 35 },
+        22: { x: 10, y: 60},
+        23: { x: 40, y: 60 },
+        24: { x: 67, y: 60 },
+        25: { x: 92, y: 60 },
+        26: { x: 50, y: 60 }, // Лестница
 
 
         // 3 этаж (ключи 27-35)
 
-        27: { x: 45, y: 65 },
-        28: { x: 25, y: 25 },
-        29: { x: 45, y: 25 },
-        30: { x: 65, y: 25 },
-        31: { x: 25, y: 45 },
-        32: { x: 45, y: 45 },
-        33: { x: 65, y: 45 },
-        34: { x: 25, y: 65 },
-        35: { x: 65, y: 65 }, // Лестница
+        27: { x: 10, y: 30},
+        28: { x: 40, y: 30},
+        29: { x: 67, y: 30 },
+        30: { x: 92, y: 30 },
+        31: { x: 10, y: 60 },
+        32: { x: 40, y: 60 },
+        33: { x: 67, y: 60 },
+        34: { x: 92, y: 60 },
+        35: { x: 52, y: 60 }, // Лестница
 
 
         // 4 этаж (ключи 36-44)
 
-        36: { x: 50, y: 70 },
-        37: { x: 30, y: 30 },
-        38: { x: 50, y: 30 },
-        39: { x: 70, y: 30 },
-        40: { x: 30, y: 50 },
-        41: { x: 50, y: 50 },
-        42: { x: 70, y: 50 },
-        43: { x: 30, y: 70 },
-        44: { x: 70, y: 70 }, // Лестница
+        36: { x: 30, y: 25 },
+        37: { x: 75, y: 25 },
+        38: { x: 30, y: 70 },
+        39: { x: 75, y: 70 },
+        40: { x: 30, y: 25 },
+        41: { x: 30, y: 25 },
+        42: { x: 30, y: 25 },
+        43: { x: 30, y: 25 },
+        44: { x: 80, y: 70 }, // Лестница
 
 
         // 5 этаж (ключи 45-53)
 
-        45: { x: 55, y: 75 },
-        46: { x: 35, y: 35 },
-        47: { x: 55, y: 35 },
-        48: { x: 75, y: 35 },
-        49: { x: 35, y: 55 },
-        50: { x: 55, y: 55 },
-        51: { x: 75, y: 55 },
-        52: { x: 35, y: 75 },
-        53: { x: 75, y: 75 }, // Лестница
+        45: { x: 10, y: 30 },
+        46: { x: 40, y: 30 },
+        47: { x: 67, y: 30 },
+        48: { x: 92, y: 30 },
+        49: { x: 10, y: 65 },
+        50: { x: 40, y: 65 },
+        51: { x: 67, y: 65 },
+        52: { x: 92, y: 65 },
+        53: { x: 52, y: 65 }, // Лестница
 
         // 6 этаж (ключи 54-62)
 
@@ -137,6 +137,18 @@ const initialRoomCoordinates = [
         62: { x: 60, y: 50 } // Лестница
     },
 ];
+const predefinedPaths = {
+    // Ключ в формате "startKey-endKey": [массив точек маршрута]
+    "67": [
+        [67, 35],
+        [92,35 ]// Координаты точек 2 и 3 из initialRoomCoordinates
+    ],
+    // Добавьте другие специальные маршруты по мере необходимости
+    "76": [
+        [92, 35],
+        [67, 35] // Обратный маршрут
+    ]
+};
 
 const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     const [field1, setField1] = useState('');
@@ -158,10 +170,14 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     }, [field1]);
 
 
-    const heuristic = (a, b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+    const heuristic = (a, b) => Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
 
     const getNeighbors = (node) => {
         const directions = [
+            { x: 45, y: 0 }, { x: -45, y: 0 },
+            { x: 0, y: 45}, { x: 0, y: -45 },
+            { x: 35, y: 0 }, { x: -35, y: 0 },
+            { x: 0, y: 35 }, { x: 0, y: -35 },
             { x: 30, y: 0 }, { x: -30, y: 0 },
             { x: 0, y: 30 }, { x: 0, y: -30 },
             { x: 25, y: 0 }, { x: -25, y: 0 },
@@ -170,10 +186,16 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             { x: 0, y: 20 }, { x: 0, y: -20 },
             { x: 10, y: 0 }, { x: -10, y: 0 },
             { x: 0, y: 10 }, { x: 0, y: -10 },
+            { x: 12, y: 0 }, { x: -12, y: 0 },
+            { x: 0, y: 12 }, { x: 0, y: -12 },
             { x: 15, y: 0 }, { x: -15, y: 0 },
             { x: 0, y: 15 }, { x: 0, y: -15 },
             { x: 5, y: 0 }, { x: -5, y: 0 },
             { x: 0, y: 5 }, { x: 0, y: -5 },
+            { x: 8, y: 0 }, { x: -8, y: 0 },
+            { x: 0, y: 8 }, { x: 0, y: -8 },
+            { x: 3, y: 0 }, { x: -3, y: 0 },
+            { x: 0, y: 3 }, { x: 0, y: -3 },
             { x: 27, y: 0 }, { x: -27, y: 0 },
             { x: 0, y: 27 }, { x: 0, y: -27 },
             { x: 32, y: 0 }, { x: -32, y: 0 },
@@ -194,7 +216,31 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         return neighbors;
     };
 
-    const findPath = (start, end) => {
+
+    const findPath = (start, end, startKey, endKey) => {
+        // Check for predefined route
+        const predefinedKey = `${startKey}${endKey}`;
+        const reversePredefinedKey = `${endKey}${startKey}`;
+
+        if (predefinedPaths[predefinedKey]) {
+            return predefinedPaths[predefinedKey].map(pointId => {
+                const point = currentCoordinates[pointId];
+                return point ? [point.x, point.y] : [];
+            }).filter(point => point.length > 0);
+        }
+
+        if (predefinedPaths[reversePredefinedKey]) {
+            return [...predefinedPaths[reversePredefinedKey]]
+                .reverse()
+                .map(pointId => {
+                    const point = currentCoordinates[pointId];
+                    return point ? [point.x, point.y] : [];
+                })
+                .filter(point => point.length > 0);
+        }
+
+
+        // Если предопределенного маршрута нет, используем стандартный алгоритм A*
         const openSet = [start];
         const cameFrom = {};
         const gScore = { [`${start.x},${start.y}`]: 0 };
@@ -209,6 +255,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
                 return [];
             }
 
+
             openSet.sort((a, b) =>
                 (fScore[`${a.x},${a.y}`] ?? Infinity) - (fScore[`${b.x},${b.y}`] ?? Infinity)
             );
@@ -217,6 +264,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
             if (current.x === end.x && current.y === end.y) {
                 const path = reconstructPath(cameFrom, current);
+                console.log(cameFrom)
                 return path;
             }
 
@@ -326,7 +374,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
         if ([1013, 1016, 1012, 1011, 1010].includes(startKey)) {
             startKey = 6;
-            
+
 
 
         }
@@ -443,7 +491,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
             startKey = 22;
         }
-        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
+        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(endKey)) {
             endKey = 22;
         }
         if ([1203, 1202, 1201, 1223, 1224, 1225].includes(startKey)) {
@@ -605,7 +653,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         if ([1505, 1504].includes(endKey)) {
             endKey = 49;
         }
-        if ([1502, 1519, 1520, 1553].includes(endKey)) {
+        if ([1502, 1519, 1520, 1553].includes(startKey)) {
             startKey = 50;
         }
         if ([1502, 1519, 1520, 1553].includes(endKey)) {
@@ -640,7 +688,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
 
 
-        if ((!start || !end) ||(field1 >=1609 || field2 >=1609) ||(field1 <=1000 || field2 <=1000)) {
+        if ((!start || !end)||(field1 >=1609 || field2 >=1609) ||(field1 <=1000 || field2 <=1000)) {
             alert("Ошибка: введены некорректные номера аудиторий для корпуса №1!");
             console.log(" ")
             return;
@@ -699,14 +747,15 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
         const entrance1 = currentCoordinates[entranceKey1];
         const entrance2 = currentCoordinates[entranceKey2];
-        if (hundredsDigit1 === hundredsDigit2) {const pathToStart = findPath( start, end);
+        if (hundredsDigit1 === hundredsDigit2) {const pathToStart = findPath( start, end, startKey, endKey);
             setPath1(pathToStart);}
         else{
-            const pathToStart = findPath( start, entrance1);
+            const pathToStart = findPath(start, entrance1, startKey, entranceKey1);
+
             setPath1(pathToStart);
 
             // Находим путь для field2
-            const pathToEnd = findPath(entrance2, end);
+            const pathToEnd = findPath(entrance2, end, entranceKey2, endKey);
             setPath2(pathToEnd);}
 
         // Остальной код для изображений...
