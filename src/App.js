@@ -140,10 +140,11 @@ const initialRoomCoordinates = [
 const predefinedPaths = {
     // Ключ в формате "startKey-endKey": [массив точек маршрута]
     "7-6": [
-        [92,70],
+
         [67,70],
         [67, 35],
         [92,35 ],
+        [92,70],
         // Координаты точек 2 и 3 из initialRoomCoordinates
     ],
     // Добавьте другие специальные маршруты по мере необходимости
