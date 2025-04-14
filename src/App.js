@@ -62,15 +62,15 @@ const initialRoomCoordinates = [
 
         // 1 этаж (ключи 9-17)
 
-        9: { x: 10, y: 35 },
-        10: { x: 40, y: 35 },
-        11: { x: 67, y: 35 },
-        12: { x: 87, y: 35 },
-        13: { x: 10, y: 70 },
-        14: { x: 40, y: 70 },
-        15: { x: 67, y: 70 },
-        16: { x: 87, y: 70 },
-        17: { x: 45, y: 35 },// Лестница
+        9: { x: 10, y: 37 },
+        10: { x: 37, y: 37 },
+        11: { x: 57, y: 37 },
+        12: { x: 87, y: 37 },
+        13: { x: 10, y: 67 },
+        14: { x: 37, y: 67 },
+        15: { x: 57, y: 67 },
+        16: { x: 87, y: 67 },
+        17: { x: 47, y: 37 },// Лестница
 
 
         // 2 этаж (ключи 18-26)
@@ -90,11 +90,11 @@ const initialRoomCoordinates = [
 
         27: { x: 10, y: 30},
         28: { x: 40, y: 30},
-        29: { x: 67, y: 30 },
+        29: { x: 57, y: 30 },
         30: { x: 92, y: 30 },
         31: { x: 10, y: 60 },
         32: { x: 40, y: 60 },
-        33: { x: 67, y: 60 },
+        33: { x: 57, y: 60 },
         34: { x: 92, y: 60 },
         35: { x: 52, y: 60 }, // Лестница
 
@@ -139,15 +139,43 @@ const initialRoomCoordinates = [
 ];
 const predefinedPaths = {
     // Ключ в формате "startKey-endKey": [массив точек маршрута]
-    "67": [
+    "7-6": [
+        [92,70],
+        [67,70],
         [67, 35],
-        [92,35 ]// Координаты точек 2 и 3 из initialRoomCoordinates
+        [92,35 ],
+        // Координаты точек 2 и 3 из initialRoomCoordinates
     ],
     // Добавьте другие специальные маршруты по мере необходимости
-    "76": [
+    "6-7": [
+        [92,70],
         [92, 35],
-        [67, 35] // Обратный маршрут
+        [67, 35],
+        [67,70] ,
+        // Обратный маршрут
     ]
+};
+const priorityPoints = [
+    { x: 10, y: 37 },
+    {x:57, y:30},
+    {x:57, y:60},
+    // здесь добавляй приоритетные точки
+];
+
+const isPriorityPoint = (point) => {
+    return priorityPoints.some(p => p.x === point.x && p.y === point.y);
+};
+
+const isIntermediatePriority = (point, start, end) => {
+    return isPriorityPoint(point)
+        && !(point.x === start.x && point.y === start.y)
+        && !(point.x === end.x && point.y === end.y);
+};
+
+const heuristic = (a, b, start, end) => {
+    const baseDistance = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+    const bonus = isIntermediatePriority(a, start, end) ? -50 : 0; // приоритет
+    return baseDistance + bonus;
 };
 
 const Navigation = ({ currentCoordinates: initialCoordinates }) => {
@@ -170,12 +198,14 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     }, [field1]);
 
 
-    const heuristic = (a, b) => Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+
 
     const getNeighbors = (node) => {
         const directions = [
             { x: 45, y: 0 }, { x: -45, y: 0 },
             { x: 0, y: 45}, { x: 0, y: -45 },
+            { x: 40, y: 0 }, { x: -40, y: 0 },
+            { x: 0, y: 40}, { x: 0, y: -40 },
             { x: 35, y: 0 }, { x: -35, y: 0 },
             { x: 0, y: 35 }, { x: 0, y: -35 },
             { x: 30, y: 0 }, { x: -30, y: 0 },
@@ -218,33 +248,25 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
 
     const findPath = (start, end, startKey, endKey) => {
-        // Check for predefined route
-        const predefinedKey = `${startKey}${endKey}`;
-        const reversePredefinedKey = `${endKey}${startKey}`;
+        const predefinedKey = `${startKey}-${endKey}`;
+        const reversePredefinedKey = `${endKey}-${startKey}`; // исправлено
+
+        console.log(predefinedKey);
 
         if (predefinedPaths[predefinedKey]) {
-            return predefinedPaths[predefinedKey].map(pointId => {
-                const point = currentCoordinates[pointId];
-                return point ? [point.x, point.y] : [];
-            }).filter(point => point.length > 0);
+            return predefinedPaths[predefinedKey];
         }
 
         if (predefinedPaths[reversePredefinedKey]) {
-            return [...predefinedPaths[reversePredefinedKey]]
-                .reverse()
-                .map(pointId => {
-                    const point = currentCoordinates[pointId];
-                    return point ? [point.x, point.y] : [];
-                })
-                .filter(point => point.length > 0);
+            return [...predefinedPaths[reversePredefinedKey]].reverse();
         }
 
-
-        // Если предопределенного маршрута нет, используем стандартный алгоритм A*
         const openSet = [start];
         const cameFrom = {};
         const gScore = { [`${start.x},${start.y}`]: 0 };
-        const fScore = { [`${start.x},${start.y}`]: heuristic(start, end) };
+        const fScore = {
+            [`${start.x},${start.y}`]: heuristic(start, end, start, end) // исправлено
+        };
 
         let iteration = 0;
         const MAX_ITERATIONS = 100;
@@ -255,7 +277,6 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
                 return [];
             }
 
-
             openSet.sort((a, b) =>
                 (fScore[`${a.x},${a.y}`] ?? Infinity) - (fScore[`${b.x},${b.y}`] ?? Infinity)
             );
@@ -263,17 +284,17 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             const current = openSet.shift();
 
             if (current.x === end.x && current.y === end.y) {
-                const path = reconstructPath(cameFrom, current);
-                console.log(cameFrom)
-                return path;
+                return reconstructPath(cameFrom, current);
             }
 
             for (let neighbor of getNeighbors(current)) {
                 const tentativeGScore = gScore[`${current.x},${current.y}`] + 1;
-                if (tentativeGScore < (gScore[`${neighbor.x},${neighbor.y}`] || Infinity)) {
-                    cameFrom[`${neighbor.x},${neighbor.y}`] = current;
-                    gScore[`${neighbor.x},${neighbor.y}`] = tentativeGScore;
-                    fScore[`${neighbor.x},${neighbor.y}`] = tentativeGScore + heuristic(neighbor, end);
+                const neighborKey = `${neighbor.x},${neighbor.y}`;
+
+                if (tentativeGScore < (gScore[neighborKey] || Infinity)) {
+                    cameFrom[neighborKey] = current;
+                    gScore[neighborKey] = tentativeGScore;
+                    fScore[neighborKey] = tentativeGScore + heuristic(neighbor, end, start, end); // исправлено
 
                     if (!openSet.some(n => n.x === neighbor.x && n.y === neighbor.y)) {
                         openSet.push(neighbor);
@@ -285,6 +306,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         console.log("Путь не найден!");
         return [];
     };
+
 
     const updateRoomCoordinate = (floorIndex, roomId, newX, newY) => {
         setRoomCoordinatesList(prev => {
