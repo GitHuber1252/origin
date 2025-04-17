@@ -310,7 +310,7 @@ const isIntermediatePriority = (point, start, end) => {
 
 const heuristic = (a, b, start, end) => {
     const baseDistance = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
-    const bonus = isIntermediatePriority(a, start, end) ? -50 : 0; // приоритет
+    const bonus = isIntermediatePriority(a, start, end) ? -5 : 0; // приоритет
     return baseDistance + bonus;
 };
 
