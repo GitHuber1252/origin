@@ -127,14 +127,14 @@ const initialRoomCoordinates = [
         // 6 этаж (ключи 54-62)
 
         54: { x: 40, y: 50 },
-        55: { x: 20, y: 10 },
+        55: { x: 80, y: 50 },
         56: { x: 40, y: 10 },
         57: { x: 60, y: 10 },
         58: { x: 20, y: 30 },
         59: { x: 40, y: 30 },
         60: { x: 60, y: 30 },
         61: { x: 20, y: 50 },
-        62: { x: 60, y: 50 } // Лестница
+        62: { x: 80, y: 70 } // Лестница
     },
 ];
 const predefinedPaths = {
@@ -160,7 +160,8 @@ const priorityPoints = [
     { x: 10, y: 37 },
     {x:57, y:30},
     {x:57, y:60},
-    {x:87, y : 37}
+    {x:87, y : 37},
+    {x: 80, y: 50}
     // здесь добавляй приоритетные точки
 ];
 
@@ -698,6 +699,20 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
 
         if ([1544, 1543, 1541].includes(endKey)) {
             endKey = 52;
+        }
+        if ([1544, 1543, 1541].includes(startKey)) {
+            startKey = 52;
+        }
+
+        if ([1544, 1543, 1541].includes(endKey)) {
+            endKey = 52;
+        }
+        if ([1601, 1602, 1603,1604, 1605, 1606,1607, 1608].includes(startKey)) {
+            startKey = 54;
+        }
+
+        if ([1601, 1602, 1603,1604, 1605, 1606,1607, 1608].includes(endKey)) {
+            endKey = 54;
         }
 
 

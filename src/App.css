@@ -150,3 +150,15 @@ form {
   background-color: #4CAF50;
   color: white;
 }
+.instructions {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border-left: 4px solid #007bff;
+}
+
+.instructions p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
