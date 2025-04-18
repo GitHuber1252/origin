@@ -292,7 +292,7 @@ const priorityPoints = [
     {x:57, y : 37},
     {x:37, y : 37},
     {x:67, y:35},
-    {x:40, y :35},
+
     {x:92, y :35}
 
     // здесь добавляй приоритетные точки
@@ -310,7 +310,7 @@ const isIntermediatePriority = (point, start, end) => {
 
 const heuristic = (a, b, start, end) => {
     const baseDistance = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
-    const bonus = isIntermediatePriority(a, start, end) ? -5 : 0; // приоритет
+    const bonus = isIntermediatePriority(a, start, end) ? -17 : 0; // приоритет
     return baseDistance + bonus;
 };
 
