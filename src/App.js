@@ -280,6 +280,20 @@ const predefinedPaths = {
         [57,67]
         // Обратный маршрут
     ],
+    "5-0": [
+        [40,70],
+        [40,35],
+        [40,70]
+        // Координаты точек 2 и 3 из initialRoomCoordinates
+    ],
+    // Добавьте другие специальные маршруты по мере необходимости
+    "0-5": [
+        [10,35],
+        [ 40, 35],
+        [40,70],
+        // Обратный маршрут
+    ],
+
 
 
 };
@@ -292,11 +306,27 @@ const priorityPoints = [
     {x:57, y : 37},
     {x:37, y : 37},
     {x:67, y:35},
-    {x:40, y :35},
+
     {x:92, y :35}
 
     // здесь добавляй приоритетные точки
 ];
+const stairGroups = {
+    'A': {
+        0: 8,   // лестница A на 0 этаже - точка 8
+        1: 17,  // лестница A на 1 этаже - точка 17
+        2: 26,  // и так далее...
+        3: 35,
+        4: 44,
+        5: 53,
+        6: 62
+    },
+    // Можно добавить другие группы лестниц, если они есть
+    'B': {
+
+
+    }
+};
 
 const isPriorityPoint = (point) => {
     return priorityPoints.some(p => p.x === point.x && p.y === point.y);
@@ -310,7 +340,7 @@ const isIntermediatePriority = (point, start, end) => {
 
 const heuristic = (a, b, start, end) => {
     const baseDistance = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
-    const bonus = isIntermediatePriority(a, start, end) ? -5 : 0; // приоритет
+    const bonus = isIntermediatePriority(a, start, end) ? -17 : 0; // приоритет
     return baseDistance + bonus;
 };
 
@@ -444,16 +474,6 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
     };
 
 
-    const updateRoomCoordinate = (floorIndex, roomId, newX, newY) => {
-        setRoomCoordinatesList(prev => {
-            const newList = [...prev];
-            newList[floorIndex] = {
-                ...newList[floorIndex],
-                [roomId]: { x: newX, y: newY }
-            };
-            return newList;
-        });
-    };
 
     const reconstructPath = (cameFrom, current) => {
         const totalPath = [[current.x, current.y]];
@@ -869,68 +889,60 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         // Находим путь для field1
         const hundredsDigit1 = Math.floor( field1 !== undefined && field1 !== "" ? Math.floor((Number(field1) % 1000) / 100) : 0 );
         const hundredsDigit2 = Math.floor(field2 !== undefined && field2 !== "" ? Math.floor((Number(field2) % 1000) / 100) : 0 );
-        let entranceKey1 = 8;
-        let entranceKey2 = 8;
-        if (hundredsDigit1 === 0) {
-            entranceKey1 = 8;
-        }
-        if (hundredsDigit2 === 0) {
-            entranceKey2 = 8;
-        }
 
-        if (hundredsDigit2 === 1) {
-            entranceKey2 = 17;
-        }// предположим, что ЛЕСТНИЦА - это точка 8
-        if (hundredsDigit1 === 1) {
-            entranceKey1 = 17;
-        }
-
-        if (hundredsDigit2 === 2) {
-            entranceKey2 = 26;
-        }
-        if (hundredsDigit1 === 2) {
-            entranceKey1 = 26;
-        }
-        if (hundredsDigit2 === 3) {
-            entranceKey2 = 35;
-        }
-        if (hundredsDigit1 === 3) {
-            entranceKey1 = 35;
-        }
-        if (hundredsDigit2 === 4) {
-            entranceKey2 = 44;
-        }
-        if (hundredsDigit1 === 4) {
-            entranceKey1 = 44;
-        }
-        if (hundredsDigit2 === 5) {
-            entranceKey2 = 53;
-        }
-        if (hundredsDigit1 === 5) {
-            entranceKey1= 53;
-        }
-        if (hundredsDigit2 === 6) {
-            entranceKey2 = 62;
-        }
-        if (hundredsDigit1 === 6) {
-            entranceKey1= 62;
-        }
-
-
-        const entrance1 = currentCoordinates[entranceKey1];
-        const entrance2 = currentCoordinates[entranceKey2];
-        if (hundredsDigit1 === hundredsDigit2) {const pathToStart = findPath( start, end, startKey, endKey);
-            setPath1(pathToStart);}
-        else{
-            const pathToStart = findPath(start, entrance1, startKey, entranceKey1);
-
+        if (hundredsDigit1 === hundredsDigit2) {
+            // Если на одном этаже - строим прямой маршрут
+            const pathToStart = findPath(start, end, startKey, endKey);
             setPath1(pathToStart);
+            setPath2(null);
+            setSelectedImages([`${hundredsDigit1}.png`]);
+            return;
+        }
 
-            // Находим путь для field2
-            const pathToEnd = findPath(entrance2, end, entranceKey2, endKey);
-            setPath2(pathToEnd);}
+        // Находим все возможные пути через разные лестницы
+        let bestPath = null;
+        let bestLength = Infinity;
+        let bestStairGroup = null;
+        let bestImages = [];
 
-        // Остальной код для изображений...
+        // Перебираем все группы лестниц
+        for (const [groupName, group] of Object.entries(stairGroups)) {
+            const stair1 = group[hundredsDigit1]; // лестница на стартовом этаже
+            const stair2 = group[hundredsDigit2]; // лестница на целевом этаже
+
+            if (!stair1 || !stair2) continue; // если в этой группе нет лестниц на одном из этажей
+
+            const stair1Coords = currentCoordinates[stair1];
+            const stair2Coords = currentCoordinates[stair2];
+
+            // Маршрут от старта до лестницы на стартовом этаже
+            const pathToStair = findPath(start, stair1Coords, startKey, stair1);
+
+            // Маршрут от лестницы на целевом этаже до цели
+            const pathFromStair = findPath(stair2Coords, end, stair2, endKey);
+
+            const totalLength = (pathToStair?.length || 0) + (pathFromStair?.length || 0);
+
+            if (totalLength < bestLength) {
+                bestLength = totalLength;
+                bestPath = {
+                    path1: pathToStair,
+                    path2: pathFromStair
+                };
+                bestStairGroup = groupName;
+                bestImages = [`${hundredsDigit1}.png`, `${hundredsDigit2}.png`];
+            }
+        }
+
+        if (bestPath) {
+            setPath1(bestPath.path1);
+            setPath2(bestPath.path2);
+            setSelectedImages(bestImages);
+            setValue(`Переместитесь на ${hundredsDigit2} этаж через лестницу ${bestStairGroup}`);
+        } else {
+            alert("Не удалось найти подходящий маршрут через лестницы!");
+        }
+
 
         const imageIndex1 = Math.min(6, Math.max(0, hundredsDigit1));
         const imageIndex2 = Math.min(6, Math.max(0, hundredsDigit2));
@@ -938,9 +950,9 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         console.log("Старт")
         console.log(start, startKey)
         console.log("Лесница начальный этаж")
-        console.log(entrance1, entranceKey1)
+
         console.log("Лесница конечный этаж")
-        console.log(entrance2, entranceKey2)
+
         console.log("Конец")
         console.log( end, endKey)
 
@@ -987,10 +999,10 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         </div>
     );
 };
-const Maze = ({ mazeImage, path, coordinates, floor, roomCoordinatesList  }) => {
+const Maze = ({mazeImage, path, coordinates, floor, }) => {
 
     const imgRef = useRef();
-    const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+    const [imageSize, setImageSize] = useState({width: 0, height: 0});
 
     // Функция для определения, принадлежит ли ключ к текущему этажу
     const isKeyForCurrentFloor = (key) => {
@@ -1018,7 +1030,7 @@ const Maze = ({ mazeImage, path, coordinates, floor, roomCoordinatesList  }) => 
         image.onload = () => {
             imgRef.current.image(image);
 
-            const maxWidth = window.innerWidth * 1.0;
+            const maxWidth = window.innerWidth ;
             const scale = maxWidth / image.width;
             const scaledHeight = image.height * scale;
 
