@@ -401,7 +401,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         }
 
 
-        if ([1001, 1002, 1003, 1014, 1015].includes(endKey)) {
+        if ([1001, 1002, 1003, 1014, 1015].includes(startKey)) {
             startKey = 2;
             }
 
