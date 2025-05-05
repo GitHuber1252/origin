@@ -377,6 +377,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
         let endKey = field2 !== undefined && field2 !== "" ? Number(field2) : 0;
 
 // startKey =0  if it matches any of the values
+        // startKey =0  if it matches any of the values
         if ([1033, 1034, 1035, 1037].includes(startKey)) {
             startKey = 0;
         }
@@ -393,9 +394,10 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             endKey = 1;
         }
 
-        if ([1001, 1002, 1003, 1014, 1015].includes(startKey)) {
+
+        if ([1001, 1002, 1003, 1014, 1015].includes(endKey)) {
             startKey = 2;
-        }
+            }
 
         if ([1001, 1002, 1003, 1014, 1015].includes(endKey)) {
             endKey = 2;
@@ -445,11 +447,11 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             endKey = 7;
         }
 
-        if ([1146].includes(startKey)) {
+        if ([1146, 1145].includes(startKey)) {
             startKey = 9;
         }
 
-        if ([1146].includes(endKey)) {
+        if ([1146, 1145].includes(endKey)) {
             endKey = 9;
         }
 
@@ -501,240 +503,235 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             endKey = 15;
         }
 
-        if ([1111, 1112, 1113, 1115, 1116, 1118, 1119].includes(startKey)) {
+        if ([1111, 1112, 1113, 1114, 1115, 1116, 1117, 1118, 1119].includes(startKey)) {
             startKey = 16;
         }
 
-        if ([1111, 1112, 1113, 1115, 1116, 1118, 1119].includes(endKey)) {
+        if ([1111, 1112, 1113, 1114, 1115, 1116, 1117, 1118, 1119].includes(endKey)) {
             endKey = 16;
         }
 
-        if ([1213, 1214, 1215, 1217, 1212, 1211, 1210].includes(startKey)) {
+        if ([1235-1, 1235, 1236, 1237, 1238].includes(startKey)) {
             startKey = 18;
         }
 
-        if ([1213, 1214, 1215, 1217, 1212, 1211, 1210].includes(endKey)) {
+        if ([1235-1, 1235, 1236, 1237, 1238].includes(endKey)) {
             endKey = 18;
         }
 
-        if ([1218, 1219, 1220, 1221, 1228, 1222, 1226].includes(startKey)) {
+        if ([1239, 1240, 1241, 1201, 1230].includes(startKey)) {
             startKey = 19;
         }
 
-        if ([1218, 1219, 1220, 1221, 1228, 1222, 1226].includes(endKey)) {
+        if ([1239, 1240, 1241, 1201, 1230].includes(endKey)) {
             endKey = 19;
         }
 
-        if ([1229, 1231, 1231, 1232].includes(startKey)) {
+        if ([1202, 1203, 1204, 1224, 1223, 1225].includes(startKey)) {
             startKey = 20;
         }
 
-        if ([1229, 1231, 1231, 1232].includes(endKey)) {
+        if ([1202, 1203, 1204, 1224, 1223, 1225].includes(endKey)) {
             endKey = 20;
         }
 
-        if ([1233].includes(startKey)) {
+        if ([1205, 1206, 1207, 1209, 1208, 1210].includes(startKey)) {
             startKey = 21;
         }
 
-        if ([1233].includes(endKey)) {
+        if ([1205, 1206, 1207, 1209, 1208, 1210].includes(endKey)) {
             endKey = 21;
         }
 
-        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(startKey)) {
+        if ([1234, 1233, 1232].includes(startKey)) {
             startKey = 22;
         }
-        if ([1208, 1209, 1207, 1206, 1205, 1204].includes(endKey)) {
+        if ([1234, 1233, 1232].includes(endKey)) {
             endKey = 22;
         }
-        if ([1203, 1202, 1201, 1223, 1224, 1225].includes(startKey)) {
+        if ([1231, 1229, 1228].includes(startKey)) {
             startKey = 23;
         }
 
-        if ([1203, 1202, 1201, 1223, 1224, 1225].includes(endKey)) {
+        if ([1231, 1229, 1228].includes(endKey)) {
             endKey = 23;
         }
 
-        if ([1241, 1240, 1239].includes(startKey)) {
+        if ([1221, 1226, 1222, 1220, 1219, 1218, 1217].includes(startKey)) {
             startKey = 24;
         }
 
-        if ([1241, 1240, 1239].includes(endKey)) {
+        if ([1221, 1226, 1222, 1220, 1219, 1218, 1217].includes(endKey)) {
             endKey = 24;
         }
 
-        if ([1238, 1237, 1236, 1235].includes(startKey)) {
+        if ([1216, 1215, 1214, 1213, 1212, 1211].includes(startKey)) {
             startKey = 25;
         }
 
-        if ([1238, 1237, 1236, 1235].includes(endKey)) {
+        if ([1216, 1215, 1214, 1213, 1212, 1211].includes(endKey)) {
             endKey = 25;
         }
 
-        if ([1310, 1311, 1312, 1313, 1314, 1315, 1309, 1309].includes(startKey)) {
+        if ([1334, 1335, 1336, 1337, 1338].includes(startKey)) {
             startKey = 27;
         }
 
-        if ([1310, 1311, 1312, 1313, 1314, 1315, 1309, 1309].includes(endKey)) {
+        if ([1334, 1335, 1336, 1337, 1338].includes(endKey)) {
             endKey = 27;
         }
 
-        if ([1316, 1317, 1318].includes(startKey)) {
+        if ([1339, 1340, 1325, 1326].includes(startKey)) {
             startKey = 28;
         }
 
-        if ([1316, 1317, 1318].includes(endKey)) {
+        if ([1339, 1340, 1325, 1326].includes(endKey)) {
             endKey = 28;
         }
 
-        if ([1326, 1324, 1328, 1329, 1327].includes(startKey)) {
+        if ([1301, 1302, 1303, 1320, 1319, 1321].includes(startKey)) {
             startKey = 29;
         }
 
-        if ([1326, 1324, 1328, 1329, 1327].includes(endKey)) {
+        if ([1301, 1302, 1303, 1320, 1319, 1321].includes(endKey)) {
             endKey = 29;
         }
 
-        if ([1330, 1331, 1332, 1333].includes(startKey)) {
+        if ([1304, 1305, 1306, 1307, 1308, 1308-2].includes(startKey)) {
             startKey = 30;
         }
 
-        if ([1330, 1331, 1332, 1333].includes(endKey)) {
+        if ([1304, 1305, 1306, 1307, 1308, 1308-2].includes(endKey)) {
             endKey = 30;
         }
 
-        if ([1308, 1308, 1307, 1306, 1305, 1304, 1303].includes(startKey)) {
+        if ([1333, 1332, 1331, 1330].includes(startKey)) {
             startKey = 31;
         }
 
-        if ([1308, 1308, 1307, 1306, 1305, 1304, 1303].includes(endKey)) {
+        if ([1333, 1332, 1331, 1330].includes(endKey)) {
             endKey = 31;
         }
 
-        if ([1302, 1301, 1319, 1321].includes(startKey)) {
+        if ([1329, 1328, 1327, 1324, 1323].includes(startKey)) {
             startKey = 32;
         }
 
-        if ([1302, 1301, 1319, 1321].includes(endKey)) {
+        if ([1329, 1328, 1327, 1324, 1323].includes(endKey)) {
             endKey = 32;
         }
 
-        if ([1325, 1340, 1339].includes(startKey)) {
+        if ([1322, 1318, 1317, 1316, 1315, 1314].includes(startKey)) {
             startKey = 33;
         }
 
-        if ([1325, 1340, 1339].includes(endKey)) {
+        if ([1322, 1318, 1317, 1316, 1315, 1314].includes(endKey)) {
             endKey = 33;
         }
 
-        if ([1338, 1337, 1336, 1335].includes(startKey)) {
+        if ([1313, 1312, 1311, 1310, 1309-2, 1309].includes(startKey)) {
             startKey = 34;
         }
 
-        if ([1338, 1337, 1336, 1335].includes(endKey)) {
+        if ([1313, 1312, 1311, 1310, 1309-2, 1309].includes(endKey)) {
             endKey = 34;
         }
 
-        if ([1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414].includes(startKey)) {
+        if ([1420, 1420, 1418, 1419, 1401, 1401, 1402, 1403, 1403, 1403].includes(startKey)) {
             startKey = 36;
         }
 
-        if ([1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414].includes(endKey)) {
+        if ([1420, 1420, 1418, 1419, 1401, 1401, 1402, 1403].includes(endKey)) {
             endKey = 36;
         }
 
-        if ([1415, 1416, 1417, 1421].includes(startKey)) {
+        if ([1404, 1405, 1405, 1405, 1406].includes(startKey)) {
             startKey = 37;
         }
 
-        if ([1415, 1416, 1417, 1421].includes(endKey)) {
+        if ([1404, 1405, 1405, 1405, 1406].includes(endKey)) {
             endKey = 37;
         }
 
-        if ([1406, 1405, 1404, 1403].includes(startKey)) {
+        if ([1421, 1417, 1416, 1415, 1414, 1414, 1413].includes(startKey)) {
             startKey = 38;
         }
 
-        if ([1406, 1405, 1404, 1403].includes(endKey)) {
+        if ([1421, 1417, 1416, 1415, 1414-2, 1414, 1413].includes(endKey)) {
             endKey = 38;
         }
 
-        if ([1402, 1401, 1418, 1420, 1419].includes(startKey)) {
+        if ([1412, 1411, 1410, 1409, 1408, 1407].includes(startKey)) {
             startKey = 39;
         }
 
-        if ([1402, 1401, 1418, 1420, 1419].includes(endKey)) {
+        if ([1412, 1411, 1410, 1409, 1408, 1407].includes(endKey)) {
             endKey = 39;
         }
 
-        if ([1510, 1511, 1512, 1513, 1514, 1506].includes(startKey)) {
+        if ([1540, 1541, 1542, 1543, 1544].includes(startKey)) {
             startKey = 45;
         }
 
-        if ([1510, 1511, 1512, 1513, 1514, 1506].includes(endKey)) {
+        if ([1540, 1541, 1542, 1543, 1544].includes(endKey)) {
             endKey = 45;
         }
 
-        if ([1515, 1516, 1517, 1521, 1522, 1523, 1518].includes(startKey)) {
+        if ([1545, 1546, 1547, 1548, 1549, 1550, 1551, 1552, 1527, 1526].includes(startKey)) {
             startKey = 46;
         }
 
-        if ([1515, 1516, 1517, 1521, 1522, 1523, 1518].includes(endKey)) {
+        if ([1545, 1546, 1547, 1548, 1549, 1550, 1551, 1552, 1527, 1526].includes(endKey)) {
             endKey = 46;
         }
 
-        if ([1524, 1529, 1530, 1525, 1528].includes(startKey)) {
+        if ([1553, 1501, 1520, 1519, 1501].includes(startKey)) {
             startKey = 47;
         }
 
-        if ([1524, 1529, 1530, 1525, 1528].includes(endKey)) {
+        if ([1553, 1501, 1520, 1519, 1501].includes(endKey)) {
             endKey = 47;
         }
 
-        if ([1537, 1539, 1540].includes(startKey)) {
+        if ([1502, 1504, 1505, 1506, 1503].includes(startKey)) {
             startKey = 48;
         }
 
-        if ([1537, 1539, 1540].includes(endKey)) {
+        if ([1502, 1504, 1505, 1506, 1503].includes(endKey)) {
             endKey = 48;
         }
 
-        if ([1505, 1504].includes(startKey)) {
+        if ([1539, 1538, 1537, 1536, 1535, 1534, 1533].includes(startKey)) {
             startKey = 49;
         }
 
-        if ([1505, 1504].includes(endKey)) {
+        if ([1539, 1538, 1537, 1536, 1535, 1534, 1533].includes(endKey)) {
             endKey = 49;
         }
-        if ([1502, 1519, 1520, 1553].includes(startKey)) {
+        if ([1532, 1531, 1530, 1529, 1524, 1528-1, 1528, 1525, 1525-1, 1523].includes(startKey)) {
+
             startKey = 50;
         }
-        if ([1502, 1519, 1520, 1553].includes(endKey)) {
+        if ([1532, 1531, 1530, 1529, 1524, 1528-1, 1528, 1525-2, 1525, 1523].includes(endKey)) {
             endKey = 50;
         }
 
-        if ([1552, 1551, 1550, 1526, 1527].includes(startKey)) {
+        if ([1522, 1521, 1517, 1516, 1518, 1515].includes(startKey)) {
             startKey = 51;
         }
 
-        if ([1552, 1551, 1550, 1526, 1527].includes(endKey)) {
+        if ([1522, 1521, 1517, 1516, 1518, 1515].includes(endKey)) {
             endKey = 51;
         }
 
-        if ([1544, 1543, 1541].includes(startKey)) {
+        if ([1514-1, 1514, 1513, 1512, 1511, 1510, 1508, 1509, 1507].includes(startKey)) {
             startKey = 52;
         }
 
-        if ([1544, 1543, 1541].includes(endKey)) {
+        if ([1514-1, 1514, 1513, 1512, 1511, 1510, 1508, 1509, 1507].includes(endKey)) {
             endKey = 52;
-        }
-        if ([1544, 1543, 1541].includes(startKey)) {
-            startKey = 52;
         }
 
-        if ([1544, 1543, 1541].includes(endKey)) {
-            endKey = 52;
-        }
         if ([1601, 1602, 1603,1604, 1605, 1606,1607, 1608].includes(startKey)) {
             startKey = 54;
         }
