@@ -168,6 +168,7 @@ const predefinedPaths = {
 
 const priorityPoints = [
     { x: 10, y: 35 }, //0
+    { x: 40, y: 35 }, //1
     { x: 10, y: 37 }, //9
     {x:90, y:68}, //25
     {x:60, y:30},
