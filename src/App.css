@@ -107,6 +107,27 @@ form {
   align-items: center;
   text-align: center;
 }
+.instruction-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #222;
+}
+
+.instruction-container img {
+    display: block;
+    max-width: 100%;
+    margin: 16px 0;
+}
+
+.instruction-container ul,
+.instruction-container ol {
+    margin-left: 1.5em;
+    padding-left: 0.5em;
+}
+
 
 
 .maze-container {
