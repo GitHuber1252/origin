@@ -140,11 +140,11 @@ const initialRoomCoordinates = [
 
         18: { x: 10, y: 38 },
         19: { x: 40, y: 38 },
-        20: { x: 68, y: 38 },
+        20: { x: 65, y: 38 },
         21: { x: 90, y: 38 },
         22: { x: 10, y: 68},
         23: { x: 40, y: 68 },
-        24: { x: 68, y: 68 },
+        24: { x: 65, y: 68 },
         25: { x: 90, y: 68 },
         26: { x: 50, y: 38 }, // Лестница
 
@@ -165,14 +165,14 @@ const initialRoomCoordinates = [
         // 4 этаж (ключи 36-44)
 
         36: { x: 30, y: 25 },
-        37: { x: 75, y: 25 },
+        37: { x: 65, y: 25 },
         38: { x: 30, y: 70 },
-        39: { x: 75, y: 70 },
+        39: { x: 65, y: 70 },
         40: { x: 30, y: 25 },
         41: { x: 30, y: 25 },
         42: { x: 30, y: 25 },
         43: { x: 30, y: 25 },
-        44: { x: 80, y: 70 }, // Лестница
+        44: { x: 25, y: 25}, // Лестница
 
 
         // 5 этаж (ключи 45-53)
@@ -189,7 +189,7 @@ const initialRoomCoordinates = [
 
         // 6 этаж (ключи 54-62)
 
-        54: { x: 39, y: 50 },
+        54: { x: 51, y: 50 },
         55: { x: 80, y: 50 },
         56: { x: 40, y: 10 },
         57: { x: 60, y: 10 },
@@ -197,7 +197,7 @@ const initialRoomCoordinates = [
         59: { x: 40, y: 30 },
         60: { x: 60, y: 30 },
         61: { x: 20, y: 50 },
-        62: { x: 80, y: 70 } // Лестница
+        62: { x: 51, y: 30 } // Лестница
     },
 ];
 const predefinedPaths = {
@@ -340,8 +340,7 @@ const Navigation = ({ currentCoordinates: initialCoordinates }) => {
             { x: 0, y: 3 }, { x: 0, y: -3 },
             { x: 27, y: 0 }, { x: -27, y: 0 },
             { x: 0, y: 27 }, { x: 0, y: -27 },
-            { x: 32, y: 0 }, { x: -32, y: 0 },
-            { x: 0, y: 32 }, { x: 0, y: -32 }
+
         ];
         const possibleNeighbors = directions.map(d => ({
             x: node.x + d.x,
@@ -1025,21 +1024,21 @@ const Maze = ({mazeImage, path, coordinates, floor, }) => {
                         listening={false}
                     />
                 )}
-                {/*/!* Отображаем только ключи для текущего этажа *!/*/}
-                {/*{coordinates && Object.entries(coordinates)*/}
-                {/*    .filter(([key]) => isKeyForCurrentFloor(key))*/}
-                {/*    .map(([key, coord]) => (*/}
-                {/*        <Text*/}
-                {/*            key={key}*/}
-                {/*            x={(coord.x / 100) * imageSize.width}*/}
-                {/*            y={(coord.y / 100) * imageSize.height}*/}
-                {/*            text={key}*/}
-                {/*            fontSize={16}*/}
-                {/*            fill="black"*/}
-                {/*            align="center"*/}
-                {/*            listening={false}*/}
-                {/*        />*/}
-                {/*    ))}*/}
+                {/* Отображаем только ключи для текущего этажа */}
+                {coordinates && Object.entries(coordinates)
+                    .filter(([key]) => isKeyForCurrentFloor(key))
+                    .map(([key, coord]) => (
+                        <Text
+                            key={key}
+                            x={(coord.x / 100) * imageSize.width}
+                            y={(coord.y / 100) * imageSize.height}
+                            text={key}
+                            fontSize={16}
+                            fill="black"
+                            align="center"
+                            listening={false}
+                        />
+                    ))}
             </Layer>
         </Stage>
     );
