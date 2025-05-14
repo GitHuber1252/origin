@@ -1025,20 +1025,20 @@ const Maze = ({mazeImage, path, coordinates, floor, }) => {
                     />
                 )}
                 {/* Отображаем только ключи для текущего этажа */}
-                {coordinates && Object.entries(coordinates)
-                    .filter(([key]) => isKeyForCurrentFloor(key))
-                    .map(([key, coord]) => (
-                        <Text
-                            key={key}
-                            x={(coord.x / 100) * imageSize.width}
-                            y={(coord.y / 100) * imageSize.height}
-                            text={key}
-                            fontSize={16}
-                            fill="black"
-                            align="center"
-                            listening={false}
-                        />
-                    ))}
+                {/*{coordinates && Object.entries(coordinates)*/}
+                {/*    .filter(([key]) => isKeyForCurrentFloor(key))*/}
+                {/*    .map(([key, coord]) => (*/}
+                {/*        <Text*/}
+                {/*            key={key}*/}
+                {/*            x={(coord.x / 100) * imageSize.width}*/}
+                {/*            y={(coord.y / 100) * imageSize.height}*/}
+                {/*            text={key}*/}
+                {/*            fontSize={16}*/}
+                {/*            fill="black"*/}
+                {/*            align="center"*/}
+                {/*            listening={false}*/}
+                {/*        />*/}
+                {/*    ))}*/}
             </Layer>
         </Stage>
     );
